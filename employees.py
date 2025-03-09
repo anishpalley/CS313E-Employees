@@ -144,6 +144,17 @@ class Manager(Employee):
                 self.relationships[employee] -= 1
         else:
             self.happiness +=1
+        if self.happiness < PERCENTAGE_MIN:
+            self.happiness = PERCENTAGE_MIN
+        if self.happiness > PERCENTAGE_MAX:
+            self.happiness = PERCENTAGE_MAX
+        if self.performance < PERCENTAGE_MIN:
+            self.performance = PERCENTAGE_MIN
+        if self.performance > PERCENTAGE_MAX:
+            self.performance = PERCENTAGE_MAX
+        if self.salary<0:
+            raise ValueError(SALARY_ERROR_MESSAGE)
+        
 
 
 class TemporaryEmployee(Employee):
