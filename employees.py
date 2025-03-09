@@ -78,18 +78,18 @@ class Employee(ABC):
         return self._salary
     @happiness.setter
     def happiness(self, value):
-        if value < PERCENTAGE_MIN:
+        if value <= PERCENTAGE_MIN:
             self._happiness = PERCENTAGE_MIN
-        elif value > PERCENTAGE_MAX:
+        elif value >= PERCENTAGE_MAX:
             self._happiness = PERCENTAGE_MAX
         else:
             self._happiness = value
 
     @performance.setter
     def performance(self, value):
-        if value < PERCENTAGE_MIN:
+        if value <= PERCENTAGE_MIN:
             self._performance = PERCENTAGE_MIN
-        elif value > PERCENTAGE_MAX:
+        elif value >= PERCENTAGE_MAX:
             self._performance = PERCENTAGE_MAX
         else:
             self._performance = value
@@ -137,13 +137,13 @@ class Manager(Employee):
     """
     def work(self):
         num = random.randint(-5,5)
-        self._performance = self._performance + num
+        self.performance += num
         if num <= 0:
-            self._happiness -=1
+            self.happiness -=1
             for employee in self.relationships:
                 self.relationships[employee] -= 1
         else:
-            self._happiness +=1
+            self.happiness +=1
 class TemporaryEmployee(Employee):
     """
     A subclass of Employee representing a temporary employee.
