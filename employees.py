@@ -78,27 +78,26 @@ class Employee(ABC):
         return self._salary
     @happiness.setter
     def happiness(self, value):
-        if value < 0:
-            self._happiness = 0
-        elif value > 100:
-            self._happiness = 100
+        if value < PERCENTAGE_MIN:
+            self._happiness = PERCENTAGE_MIN
+        elif value > PERCENTAGE_MAX:
+            self._happiness = PERCENTAGE_MAX
         else:
             self._happiness = value
 
     @performance.setter
     def performance(self, value):
-        if value < 0:
-            self._performance = 0
-        elif value > 100:
-            self._performance = 100
+        if value < PERCENTAGE_MIN:
+            self._performance = PERCENTAGE_MIN
+        elif value > PERCENTAGE_MAX:
+            self._performance = PERCENTAGE_MAX
         else:
             self._performance = value
     @salary.setter
     def salary(self, value):
         if value < 0:
             raise ValueError(SALARY_ERROR_MESSAGE)
-        else:
-            self._salary = value
+        self._salary = value
     @abstractmethod
     def work(self):
         """
