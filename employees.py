@@ -135,52 +135,15 @@ class Manager(Employee):
     """
     A subclass of Employee representing a manager.
     """
-    @property
-    def salary(self):
-        return self._salary
-    @property
-    def happiness(self):
-        """
-        @property for happiness
-        """
-        return self._happiness
-    @property
-    def performance(self):
-        """
-        @property for performance
-        """
-        return self._performance
-    @salary.setter
-    def salary(self, value):
-        if value < 0:
-            raise ValueError(SALARY_ERROR_MESSAGE)
-        self._salary = value
-    @happiness.setter
-    def happiness(self, value):
-        if value < PERCENTAGE_MIN:
-            self._happiness = PERCENTAGE_MIN
-        elif value > PERCENTAGE_MAX:
-            self._happiness = PERCENTAGE_MAX
-        else:
-            self._happiness = value
-
-    @performance.setter
-    def performance(self, value):
-        if value < PERCENTAGE_MIN:
-            self._performance = PERCENTAGE_MIN
-        elif value > PERCENTAGE_MAX:
-            self._performance = PERCENTAGE_MAX
-        else:
-            self._performance = value
     def work(self):
         num = random.randint(-5,5)
-        self.performance = self.performance + num
+        self._performance = self._performance + num
         if num <= 0:
-            self.happiness -=1
+            self._happiness -=1
             for employee in self.relationships:
                 self.relationships[employee] -= 1
         else:
-            self.happiness +=1
+            self._happiness +=1
 class TemporaryEmployee(Employee):
     """
     A subclass of Employee representing a temporary employee.
